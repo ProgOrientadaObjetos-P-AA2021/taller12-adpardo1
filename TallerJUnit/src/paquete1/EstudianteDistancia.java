@@ -67,7 +67,7 @@ public class EstudianteDistancia extends Estudiante {
     public String toString() {
         String notasString = "Notas: \n";
         int cont = 0;
-        for (Nota nota : notas) {
+        for (int i=0; i<notas.size(); i++) {
             notasString += String.valueOf(String.format(" %.1f\n",
                     notas.get(cont).obtenerValor()));
             cont += 1;
