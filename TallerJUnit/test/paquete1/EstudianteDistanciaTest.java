@@ -35,7 +35,7 @@ public class EstudianteDistanciaTest {
 
     @Before
     public void setUp() {
-        instance = new EstudianteDistancia();
+        instance = new EstudianteDistancia("Andrea","Vela","98981234",20);
     }
 
     @After
@@ -69,9 +69,8 @@ public class EstudianteDistanciaTest {
     public void testObtenerNotas() {
         System.out.println("obtenerNotas");
         ArrayList<Nota> ns = null;
-        instance.obtenerNotas(ns);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.obtenerNotas();
+       
     }
 
     
@@ -86,7 +85,7 @@ public class EstudianteDistanciaTest {
         ns.add(new Nota(5.0));
         ns.add(new Nota(6.0));
         instance.establecerNotas(ns);
-        instance.establecerMejorNota();
+        instance.setMejorNota();
         Field field = instance.getClass().getDeclaredField("mejorNota");
         field.setAccessible(true);
         assertEquals(10.0, field.get(instance));
@@ -105,8 +104,8 @@ public class EstudianteDistanciaTest {
         ns.add(new Nota(6.0));
         double expResult = 10.0;
         instance.establecerNotas(ns);
-        instance.establecerMejorNota();
-        double result = instance.obtenerMejorNota();
+        instance.setMejorNota();
+        double result = instance.getMejorNota();
         
         assertEquals(expResult, result, 0.0);
     }
@@ -123,7 +122,7 @@ public class EstudianteDistanciaTest {
         ns.add(new Nota(5.0));
         ns.add(new Nota(6.0));
         instance.establecerNotas(ns);
-        instance.establecerPeorNota();
+        instance.setPeorNota();
         Field field = instance.getClass().getDeclaredField("peorNota");
         field.setAccessible(true);
         assertEquals(5.0, field.get(instance));
@@ -141,8 +140,8 @@ public class EstudianteDistanciaTest {
         ns.add(new Nota(6.0));
         double expResult = 5.0;
         instance.establecerNotas(ns);
-        instance.establecerMejorNota();
-        double result = instance.obtenerPeorNota();
+        instance.setPeorNota();
+        double result = instance.getPeorNota();
         
         assertEquals(expResult, result, 0.0);
     }
@@ -159,7 +158,7 @@ public class EstudianteDistanciaTest {
         ns.add(new Nota(5.0));
         ns.add(new Nota(6.0));
         instance.establecerNotas(ns);
-        instance.establecerPromedio();
+        instance.setPromedio();
         Field field = instance.getClass().getDeclaredField("promedio");
         field.setAccessible(true);
         assertEquals( 7.0, field.get(instance));
@@ -169,7 +168,7 @@ public class EstudianteDistanciaTest {
      * Test of obtenerMejorPromedio method, of class EstudianteDistancia.
      */
     @Test
-    public void testObtenerMejorPromedio() {
+    public void testObtenerPromedio() {
         System.out.println("obtenerMejorPromedio");
         ArrayList<Nota> ns = new ArrayList<>();
         ns.add(new Nota(10.0));
@@ -177,10 +176,10 @@ public class EstudianteDistanciaTest {
         ns.add(new Nota(6.0));
         double expResult = 7.0;
         instance.establecerNotas(ns);
-        instance.establecerMejorNota();
-        double result = instance.obtenerMejorPromedio();
+        instance.setPromedio();
+        double result = instance.getPromedio();
         
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result,7.0);
     }
 
     /**
@@ -196,22 +195,22 @@ public class EstudianteDistanciaTest {
         ns.add(new Nota(6.0));
         
         instance.establecerNotas(ns);
-        instance.establecerMejorNota();
-        instance.establecerPeorNota();
-        instance.establecerPromedio();
-        instance.establecerNombresEstudiante("Andrea");
-        instance.establecerApellidoEstudiante("Vela");
-        instance.establecerIdentificacionEstudiante("98981234");
+        instance.setMejorNota();
+        instance.setPeorNota();
+        instance.setPromedio();
+        instance.setNombresEstudiante("Andrea");
+        instance.setApellidosEstudiante("Vela");
+        instance.setIdentificacionEstudiante("98981234");
         
         String expResult = "Nombre Estudiante: Andrea Vela\n"
-                + "Cédula: 98981234"
+                + "Cédula: 98981234\n"
                 + "Notas: \n"
-                + "10.0"
-                + "5.0"
-                + "6.0"
-                + "Proemdio: 7.0"
-                + "Mejor Nota: 10.0"
-                + "Peor Nota: 5.0";
+                + " 10.0\n"
+                + " 5.0\n"
+                + " 6.0\n"
+                + "Promedio: 7.0\n"
+                + "Mejor nota: 10.0\n"
+                + "Peor nota: 5.0";
         String result = instance.toString();
         assertEquals(expResult, result);
         
